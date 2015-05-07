@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WpfApplication2
+namespace CSharpLaPierre
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

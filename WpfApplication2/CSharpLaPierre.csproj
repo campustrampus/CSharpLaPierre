@@ -7,7 +7,7 @@
     <ProjectGuid>{0ECEFD2D-C1EC-42AF-9CCF-6B64C4AEE2CA}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WpfApplication2</RootNamespace>
+    <RootNamespace>CSharpLaPierre</RootNamespace>
     <AssemblyName>WpfApplication2</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -61,6 +61,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Transaction.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

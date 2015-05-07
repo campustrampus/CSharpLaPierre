@@ -25,7 +25,6 @@ Title="MainWindow" Height="330.314" Width="1334.558" Loaded="Window_Loaded" Name
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Account.Name}" Header="Account" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="amountColumn" Binding="{Binding Amount}" Header="Amount" Width="SizeToHeader"/>
-                <DataGridTextColumn Binding="{Binding Currency2}" Header="Currency2" Width="SizeToHeader"/>
                 <DataGridTemplateColumn x:Name="dateColumn" Header="Date" Width="SizeToHeader">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -88,7 +87,6 @@ Title="MainWindow" Height="330.314" Width="1334.558" Loaded="Window_Loaded" Name
             <ListView.View>
                 <GridView>
                     <GridViewColumn DisplayMemberBinding="{Binding Amount}" x:Name="amountColumn1" Header="Amount" Width="80" />
-                    <GridViewColumn DisplayMemberBinding="{Binding Currency2}" Header="Currency2" Width="80" />
                     <GridViewColumn x:Name="dateColumn1" Header="Date" Width="80">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>

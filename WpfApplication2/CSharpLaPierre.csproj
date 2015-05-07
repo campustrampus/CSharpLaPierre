@@ -70,6 +70,11 @@
     </Compile>
     <Compile Include="BaseVM.cs" />
     <Compile Include="CheckBookVM.cs" />
+    <Compile Include="Migrations\201505071918127_InitialCreate.cs" />
+    <Compile Include="Migrations\201505071918127_InitialCreate.Designer.cs">
+      <DependentUpon>201505071918127_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Transaction.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -90,6 +95,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Migrations\201505071918127_InitialCreate.resx">
+      <DependentUpon>201505071918127_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

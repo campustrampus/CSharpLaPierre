@@ -38,7 +38,15 @@ namespace CSharpLaPierre
         public double Amount
         {
             get { return _Amount; }
-            set { _Amount = value; OnPropertyChanged(); OnPropertyChanged("Currency2"); }
+            set { _Amount = value; OnPropertyChanged(); }
+        }
+
+        private string _Tag;
+
+        public string Tag
+        {
+            get { return _Tag; }
+            set { _Tag = value; OnPropertyChanged(); }
         }
 
     }

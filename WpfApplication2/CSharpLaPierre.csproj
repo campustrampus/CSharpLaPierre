@@ -74,6 +74,10 @@
     <Compile Include="Migrations\201505071918127_InitialCreate.Designer.cs">
       <DependentUpon>201505071918127_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505081722130_Enable-Migrations.cs" />
+    <Compile Include="Migrations\201505081722130_Enable-Migrations.Designer.cs">
+      <DependentUpon>201505081722130_Enable-Migrations.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Transaction.cs" />
     <Compile Include="MainWindow.xaml.cs">
@@ -97,6 +101,9 @@
     </Compile>
     <EmbeddedResource Include="Migrations\201505071918127_InitialCreate.resx">
       <DependentUpon>201505071918127_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505081722130_Enable-Migrations.resx">
+      <DependentUpon>201505081722130_Enable-Migrations.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

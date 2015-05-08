@@ -52,6 +52,19 @@ namespace CSharpLaPierre
             }
         }
 
+        public DelegateCommand MoveLast
+        {
+            get
+            {
+                return new DelegateCommand
+                {
+                    ExecuteFunction = _ => CurrentPage--,
+                    CanExecuteFunction = _ => CurrentPage * _RowsPerPage < Transactions.Count
+                };
+            }
+        }
+
+
         public DelegateCommand Save
         {
             get
@@ -76,35 +89,11 @@ namespace CSharpLaPierre
             }
         }
 
-        private string _Name;
-
-        public string Name
-        {
-            get { return _Name; }
-            set { _Name = value; OnPropertyChanged(); }
-        }
-        private string _Email;
-
-        public string Email
-        {
-            get { return _Email; }
-            set { _Email = value; OnPropertyChanged(); }
-        }
-        private string _Picture;
-
-        public string Picture
-        {
-            get { return _Picture; }
-            set { _Picture = value; OnPropertyChanged(); }
-        }
-
-
-        public async void Fill()
+        public void Fill()
         {
             Transactions = _Db.Transactions.Local;
             _Db.Accounts.ToList();
             _Db.Transactions.ToList();
-            //new ObservableCollection<Transaction>();
         }
     }
 

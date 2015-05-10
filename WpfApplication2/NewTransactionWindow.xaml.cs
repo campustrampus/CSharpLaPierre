@@ -21,12 +21,38 @@ namespace CSharpLaPierre
             InitializeComponent();
         }
 
+        public Account accountTextBoxText()
+        { 
+            return (Account)accountText.SelectedItem;
+        }
+
+        public double amountTextBoxText()
+        { 
+            double d = 0.00;
+            if(double.TryParse(amountText.Text, out d))
+                return double.Parse(amountText.Text);
+            else
+                return 0;
+        }
+
+        public string transacteeTextBoxText()
+        {
+            return transacteeText.Text;
+        }
+
+        public string tagTextBoxText()
+        {
+            return tagText.Text;
+        }
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             var VM = new CheckBookVM();
             DataContext = VM;
             VM.Fill();
         }
+
+
 
     }
 }

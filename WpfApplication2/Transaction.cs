@@ -8,8 +8,23 @@ namespace CSharpLaPierre
 {
     public class Transaction : BaseVM
     {
-        public int Id { get; set; }
 
+        public Transaction() { }
+
+        public Transaction(string payee, Account account, string amount, string tag)
+        {
+            double d = 0.00;
+
+            _Date = DateTime.Today;
+            _Payee = payee;
+            _Account = account;
+            if (double.TryParse(amount, out d))
+                _Amount = double.Parse(amount);
+            else
+                _Amount = 0;
+            _Tag = tag;
+        }
+        public int Id { get; set; }
 
         private DateTime _Date;
         public DateTime Date

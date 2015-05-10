@@ -18,7 +18,7 @@
             <RowDefinition Height="20*"/>
         </Grid.RowDefinitions>
         <Label Content="Account:" HorizontalAlignment="Left" Height="24" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" Width="55"/>
-        <ComboBox DisplayMemberPath="Name" Grid.Column="1" Grid.ColumnSpan="3" Height="Auto" ItemsSource="{Binding ElementName=NewTransact, Path=DataContext.Accounts}" Margin="3,6,40,5" Grid.Row="0" VerticalAlignment="Center" >
+        <ComboBox DisplayMemberPath="Name" x:Name="accountText" Grid.Column="1" Grid.ColumnSpan="3" Height="Auto" ItemsSource="{Binding ElementName=NewTransact, Path=DataContext.Accounts}" Margin="3,6,40,5" Grid.Row="0" VerticalAlignment="Center" >
             <ComboBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <VirtualizingStackPanel/>
@@ -26,12 +26,12 @@
             </ComboBox.ItemsPanel>
         </ComboBox>
         <Label Content="Amount:" HorizontalAlignment="Left" Height="24" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" Width="55"/>
-        <TextBox HorizontalAlignment="Left" Width="180" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" VerticalAlignment="Center"/>
+        <TextBox HorizontalAlignment="Left" x:Name="amountText" Width="180" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" VerticalAlignment="Center"/>
         <Label Content="Transactee:" HorizontalAlignment="Left" Height="24" Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" Width="71"/>
-        <TextBox HorizontalAlignment="Left" Width="180" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Center"/>
+        <TextBox HorizontalAlignment="Left" x:Name="transacteeText" Width="180" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Center"/>
         <Label Content="Tag:" HorizontalAlignment="Left" Height="29" Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" Width="71"/>
-        <TextBox HorizontalAlignment="Left" Width="180" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="3" VerticalAlignment="Center"/>
-        <Button Grid.Row="5" Command="{Binding Save}" VerticalAlignment="Top" Height="22" Grid.ColumnSpan="2" Width="100">Save</Button>
+        <TextBox HorizontalAlignment="Left" x:Name="tagText" Width="180" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="3" VerticalAlignment="Center"/>
+        <Button Grid.Row="5" Command="{Binding Save}" CommandParameter="accountText.Text, amountText.Text, transacteeText.Text, tagText.Text" VerticalAlignment="Top" Height="22" Grid.ColumnSpan="2" Width="100">Save</Button>
         <Button Grid.Column="2" VerticalAlignment="Top" Grid.Row="5" Height="22" Grid.ColumnSpan="2" Width="100">Cancel</Button>
     </Grid>
 </Window>

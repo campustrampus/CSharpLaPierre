@@ -67,12 +67,12 @@ namespace CSharpLaPierre
 
         public DelegateCommand Save
         {
+       
             get
             {
-                return new DelegateCommand {
-                    ExecuteFunction = _ => {
-                        Transactions.Add(new Transaction { });
-                    }
+                return new DelegateCommand 
+                {
+                    ExecuteFunction = _ => {Transactions.Add(new Transaction( ));}
                 };
             }
         }

@@ -60,6 +60,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="TransactionVM.cs" />
     <Compile Include="Migrations\201505101934491_Accounts.cs" />
     <Compile Include="Migrations\201505101934491_Accounts.Designer.cs">
       <DependentUpon>201505101934491_Accounts.cs</DependentUpon>

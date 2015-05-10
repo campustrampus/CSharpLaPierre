@@ -26,7 +26,7 @@ namespace CSharpLaPierre
         }
         public int Id { get; set; }
 
-        private DateTime _Date;
+        private DateTime _Date = DateTime.Now;
         public DateTime Date
         {
             get { return _Date; }
@@ -39,8 +39,6 @@ namespace CSharpLaPierre
             get { return _Payee; }
             set { _Payee = value; OnPropertyChanged(); }
         }
-
-        public int AccountId { get; set; }
 
         private Account _Account;
         public virtual Account Account

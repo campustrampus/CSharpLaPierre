@@ -28,29 +28,10 @@ namespace CSharpLaPierre
             DataContext = VM;
         }
 
-
-
+        private void Close_Window(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 
-    public class TransactionVM: BaseVM
-    {
-         
-
-        private Transaction _Data = new Transaction { Date = DateTime.Now } ;
-        public Transaction Data
-        {
-            get { return _Data; }
-            set { _Data = value; }
-        }
-
-        private IEnumerable<Account> _Accounts;
-        public IEnumerable<Account> Accounts
-        {
-            get { return _Db.Accounts.ToList(); }
-            //set { _Accounts = value; }
-        }
-        
-        
-        
-    }
 }

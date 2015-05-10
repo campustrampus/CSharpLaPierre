@@ -25,12 +25,9 @@ namespace CSharpLaPierre.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         Date = c.DateTime(nullable: false),
                         Payee = c.String(),
-                        AccountId = c.Int(nullable: false),
                         Amount = c.Double(nullable: false),
                     })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Accounts", t => t.AccountId, cascadeDelete: true)
-                .Index(t => t.AccountId);
+                .PrimaryKey(t => t.Id);
             
         }
         

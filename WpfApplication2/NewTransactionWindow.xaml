@@ -23,7 +23,7 @@
                 <ColumnDefinition Width="20*"/>
             </Grid.ColumnDefinitions>
             <Label Content="Account:" HorizontalAlignment="Left" Height="24" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" Width="55"/>
-            <ComboBox DisplayMemberPath="Name" x:Name="accountText" Grid.Column="1" Grid.ColumnSpan="3" Height="Auto" ItemsSource="{Binding ElementName=NewTransact, Path=DataContext.Accounts}" Margin="3,6,40,5" Grid.Row="0" VerticalAlignment="Center" >
+            <ComboBox DisplayMemberPath="Name" SelectedItem="{Binding Account}" x:Name="accountText" Grid.Column="1" Grid.ColumnSpan="3" Height="Auto" ItemsSource="{Binding ElementName=NewTransact, Path=DataContext.Accounts}" Margin="3,6,40,5" Grid.Row="0" VerticalAlignment="Center" >
             </ComboBox>
             <Label Content="Amount:" HorizontalAlignment="Left" Height="24" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" Width="55"/>
             <TextBox HorizontalAlignment="Left" Text = "{Binding Amount, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  x:Name="amountText" Width="180" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" VerticalAlignment="Center"/>
@@ -33,7 +33,7 @@
             <TextBox HorizontalAlignment="Left" Text="{Binding Tag, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" x:Name="tagText" Width="180" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="3" VerticalAlignment="Center"/>
         </Grid>
         <Grid Grid.Row="1">
-            <Button Click="Close_Window" Command="{Binding Save}" Margin="32,10,160,16">Save</Button>
+            <Button Command="{Binding Save}" Margin="32,10,160,16">Save</Button>
             <Button Click="Close_Window" Margin="157,10,33,16">Cancel</Button>
         </Grid>
     </Grid>

@@ -10,17 +10,13 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace CSharpLaPierre
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
+    public partial class NewTransactionWindow : Window
     {
-        public MainWindow()
+        public NewTransactionWindow()
         {
             InitializeComponent();
         }
@@ -31,13 +27,6 @@ namespace CSharpLaPierre
             DataContext = VM;
             VM.Fill();
         }
-
-        private void Open_Transaction(object sender, RoutedEventArgs e)
-        {
-            NewTransactionWindow NewTranWin = new NewTransactionWindow();
-            NewTranWin.ShowDialog();
-        }
-
 
     }
 }

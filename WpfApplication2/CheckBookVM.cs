@@ -89,6 +89,7 @@ namespace CSharpLaPierre
             }
         }
 
+
         public void Fill()
         {
             Transactions = _Db.Transactions.Local;

@@ -77,11 +77,6 @@ namespace CSharpLaPierre
             }
         }
 
-        public DelegateCommand NewTransaction
-        {
-            
-        }
-
 
         public void Fill()
         {

@@ -60,6 +60,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Migrations\201505101934491_Accounts.cs" />
+    <Compile Include="Migrations\201505101934491_Accounts.Designer.cs">
+      <DependentUpon>201505101934491_Accounts.cs</DependentUpon>
+    </Compile>
     <Compile Include="NewTransactionWindow.xaml.cs">
       <DependentUpon>NewTransactionWindow.xaml</DependentUpon>
     </Compile>
@@ -111,6 +115,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505081722130_Enable-Migrations.resx">
       <DependentUpon>201505081722130_Enable-Migrations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505101934491_Accounts.resx">
+      <DependentUpon>201505101934491_Accounts.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

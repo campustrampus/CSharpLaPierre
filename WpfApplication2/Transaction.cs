@@ -73,6 +73,7 @@ namespace CSharpLaPierre
         public string Institution { get; set; }
         public bool Business { get; set; }
 
+        public double Balance { get; set; }
         public virtual IList<Transaction> Transactions { get; set; }
     }
 }

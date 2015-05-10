@@ -18,15 +18,10 @@
             <RowDefinition Height="20*"/>
         </Grid.RowDefinitions>
         <Label Content="Account:" HorizontalAlignment="Left" Height="24" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" Width="55"/>
-        <ComboBox DisplayMemberPath="Name" x:Name="accountText" Grid.Column="1" Grid.ColumnSpan="3" Height="Auto" ItemsSource="{Binding ElementName=NewTransact, Path=DataContext.Accounts}" Margin="3,6,40,5" Grid.Row="0" VerticalAlignment="Center" >
-            <ComboBox.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <VirtualizingStackPanel/>
-                </ItemsPanelTemplate>
-            </ComboBox.ItemsPanel>
+        <ComboBox DisplayMemberPath="Name" SelectedItem="{Binding Account}" x:Name="accountText" Grid.Column="1" Grid.ColumnSpan="3" Height="Auto" ItemsSource="{Binding ElementName=NewTransact, Path=DataContext.Accounts}" Margin="3,6,40,5" Grid.Row="0" VerticalAlignment="Center" >
         </ComboBox>
         <Label Content="Amount:" HorizontalAlignment="Left" Height="24" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" Width="55"/>
-        <TextBox HorizontalAlignment="Left" x:Name="amountText" Width="180" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" VerticalAlignment="Center"/>
+        <TextBox Text="" HorizontalAlignment="Left" x:Name="amountText" Width="180" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" VerticalAlignment="Center"/>
         <Label Content="Transactee:" HorizontalAlignment="Left" Height="24" Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" Width="71"/>
         <TextBox HorizontalAlignment="Left" x:Name="transacteeText" Width="180" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Center"/>
         <Label Content="Tag:" HorizontalAlignment="Left" Height="29" Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" Width="71"/>

@@ -70,23 +70,16 @@ namespace CSharpLaPierre
             get
             {
                 return new DelegateCommand {
-                    ExecuteFunction = _ => _Db.SaveChanges(),
-                    CanExecuteFunction = _ => _Db.ChangeTracker.HasChanges()
+                    ExecuteFunction = _ => {
+                        Transactions.Add(new Transaction { });
+                    }
                 };
             }
         }
 
         public DelegateCommand NewTransaction
         {
-            get
-            {
-                return new DelegateCommand {
-                    ExecuteFunction = _ => {
-                        Transactions.Add(new Transaction { });
-                        CurrentPage = Transactions.Count / _RowsPerPage + 1;
-                    }
-                };
-            }
+            
         }
 
 

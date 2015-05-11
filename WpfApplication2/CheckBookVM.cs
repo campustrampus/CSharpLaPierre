@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
+using System.Windows;
 
 namespace CSharpLaPierre
 {
@@ -77,6 +79,21 @@ namespace CSharpLaPierre
             }
         }
 
+        public DelegateCommand Open_Transaction
+        {
+            get
+            {
+                
+                    return new DelegateCommand
+                    {
+                        ExecuteFunction = _ => { NewTransactionWindow NewTranWin = new NewTransactionWindow(); 
+                                                 NewTranWin.ShowDialog(); 
+                                                 var TransVM = NewTranWin.DataContext as TransactionVM; 
+                                                 if(TransVM.isSave ==true)Transactions.Add((Transaction)TransVM.Data);},
+                       CanExecuteFunction = _ => Accounts.Count() > 0
+                    };
+            }
+        }
 
         public void Fill()
         {
@@ -84,6 +101,8 @@ namespace CSharpLaPierre
             _Db.Accounts.ToList();
             _Db.Transactions.ToList();
         }
-    }
 
+    }
 }
+
+

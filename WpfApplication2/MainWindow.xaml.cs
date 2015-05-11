@@ -32,12 +32,6 @@ namespace CSharpLaPierre
             VM.Fill();
         }
 
-        private void Open_Transaction(object sender, RoutedEventArgs e)
-        {
-            NewTransactionWindow NewTranWin = new NewTransactionWindow();
-            NewTranWin.ShowDialog();
-        }
-
 
     }
 }

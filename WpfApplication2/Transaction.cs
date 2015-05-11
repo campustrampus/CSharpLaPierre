@@ -8,22 +8,6 @@ namespace CSharpLaPierre
 {
     public class Transaction : BaseVM
     {
-
-        public Transaction() { }
-
-        public Transaction(string payee, Account account, string amount, string tag)
-        {
-            double d = 0.00;
-
-            _Date = DateTime.Today;
-            _Payee = payee;
-            _Account = account;
-            if (double.TryParse(amount, out d))
-                _Amount = double.Parse(amount);
-            else
-                _Amount = 0;
-            _Tag = tag;
-        }
         public int Id { get; set; }
 
         private DateTime _Date = DateTime.Now;
@@ -70,7 +54,6 @@ namespace CSharpLaPierre
         public string Name { get; set; }
         public string Institution { get; set; }
         public bool Business { get; set; }
-
         public double Balance { get; set; }
         public virtual IList<Transaction> Transactions { get; set; }
     }

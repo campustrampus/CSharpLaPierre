@@ -60,11 +60,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="TransactionVM.cs" />
-    <Compile Include="Migrations\201505101934491_Accounts.cs" />
-    <Compile Include="Migrations\201505101934491_Accounts.Designer.cs">
-      <DependentUpon>201505101934491_Accounts.cs</DependentUpon>
+    <Compile Include="Migrations\201505110240432_Initialize.cs" />
+    <Compile Include="Migrations\201505110240432_Initialize.Designer.cs">
+      <DependentUpon>201505110240432_Initialize.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="TransactionVM.cs" />
     <Compile Include="NewTransactionWindow.xaml.cs">
       <DependentUpon>NewTransactionWindow.xaml</DependentUpon>
     </Compile>
@@ -78,15 +79,6 @@
     </Compile>
     <Compile Include="BaseVM.cs" />
     <Compile Include="CheckBookVM.cs" />
-    <Compile Include="Migrations\201505071918127_InitialCreate.cs" />
-    <Compile Include="Migrations\201505071918127_InitialCreate.Designer.cs">
-      <DependentUpon>201505071918127_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505081722130_Enable-Migrations.cs" />
-    <Compile Include="Migrations\201505081722130_Enable-Migrations.Designer.cs">
-      <DependentUpon>201505081722130_Enable-Migrations.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Transaction.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -111,14 +103,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201505071918127_InitialCreate.resx">
-      <DependentUpon>201505071918127_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505081722130_Enable-Migrations.resx">
-      <DependentUpon>201505081722130_Enable-Migrations.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505101934491_Accounts.resx">
-      <DependentUpon>201505101934491_Accounts.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201505110240432_Initialize.resx">
+      <DependentUpon>201505110240432_Initialize.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

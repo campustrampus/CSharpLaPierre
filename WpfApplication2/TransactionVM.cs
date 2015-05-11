@@ -15,7 +15,7 @@ namespace CSharpLaPierre
         public Transaction Data
         {
             get { return _Data; }
-            set { _Data = value; ; OnPropertyChanged(); OnPropertyChanged("Data"); }
+            set { _Data = value; ; OnPropertyChanged(); }
         }
 
         public IEnumerable<Account> Accounts
@@ -30,8 +30,10 @@ namespace CSharpLaPierre
             {
                 return new DelegateCommand
                 {
-                    ExecuteFunction = _ => { _Db.Transactions.Add(_Data); _Db.SaveChanges();},
-                    //CanExecuteFunction = _ => _Data.Tag==null         Needs FIXING***********
+                    ExecuteFunction = _ => { _Db.Transactions.Add(_Data);
+                                             Data.Account.Balance = Data.Account.Balance + Data.Amount;
+                                             _Db.SaveChanges();},
+                    CanExecuteFunction = _ => !string.IsNullOrEmpty(_Data.Payee)
                 };
             }
         }

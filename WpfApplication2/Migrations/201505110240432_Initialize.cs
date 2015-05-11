@@ -3,7 +3,7 @@ namespace CSharpLaPierre.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class Initialize : DbMigration
     {
         public override void Up()
         {
@@ -15,6 +15,7 @@ namespace CSharpLaPierre.Migrations
                         Name = c.String(),
                         Institution = c.String(),
                         Business = c.Boolean(nullable: false),
+                        Balance = c.Double(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -26,15 +27,19 @@ namespace CSharpLaPierre.Migrations
                         Date = c.DateTime(nullable: false),
                         Payee = c.String(),
                         Amount = c.Double(nullable: false),
+                        Tag = c.String(),
+                        Account_Id = c.Int(),
                     })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Accounts", t => t.Account_Id)
+                .Index(t => t.Account_Id);
             
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.Transactions", "AccountId", "dbo.Accounts");
-            DropIndex("dbo.Transactions", new[] { "AccountId" });
+            DropForeignKey("dbo.Transactions", "Account_Id", "dbo.Accounts");
+            DropIndex("dbo.Transactions", new[] { "Account_Id" });
             DropTable("dbo.Transactions");
             DropTable("dbo.Accounts");
         }

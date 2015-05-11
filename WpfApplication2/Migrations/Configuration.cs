@@ -10,7 +10,6 @@ namespace CSharpLaPierre.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "CSharpLaPierre.CbDb";
         }
 
         protected override void Seed(CSharpLaPierre.CbDb context)

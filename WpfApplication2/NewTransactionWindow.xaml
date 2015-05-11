@@ -33,7 +33,7 @@
             <TextBox HorizontalAlignment="Left" Text="{Binding Tag, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" x:Name="tagText" Width="180" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="3" VerticalAlignment="Center"/>
         </Grid>
         <Grid Grid.Row="1">
-            <Button Command="{Binding Save}" Margin="32,10,160,16">Save</Button>
+            <Button Click ="Close_Window" Command="{Binding Save}" Margin="32,10,160,16">Save</Button>
             <Button Click="Close_Window" Margin="157,10,33,16">Cancel</Button>
         </Grid>
     </Grid>

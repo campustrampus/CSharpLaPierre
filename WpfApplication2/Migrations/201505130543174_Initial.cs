@@ -3,7 +3,7 @@ namespace CSharpLaPierre.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initialize : DbMigration
+    public partial class Initial : DbMigration
     {
         public override void Up()
         {
@@ -14,8 +14,7 @@ namespace CSharpLaPierre.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         Name = c.String(),
                         Institution = c.String(),
-                        Business = c.Boolean(nullable: false),
-                        Balance = c.Double(nullable: false),
+                        Balance = c.Decimal(nullable: false, precision: 18, scale: 2),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -25,8 +24,8 @@ namespace CSharpLaPierre.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Date = c.DateTime(nullable: false),
-                        Payee = c.String(),
-                        Amount = c.Double(nullable: false),
+                        Transactee = c.String(),
+                        Amount = c.Decimal(nullable: false, precision: 18, scale: 2),
                         Tag = c.String(),
                         Account_Id = c.Int(),
                     })

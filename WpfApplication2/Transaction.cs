@@ -17,11 +17,11 @@ namespace CSharpLaPierre
             set { _Date = value; OnPropertyChanged(); }
         }
 
-        private string _Payee;
-        public string Payee
+        private string _Transactee;
+        public string Transactee
         {
-            get { return _Payee; }
-            set { _Payee = value; OnPropertyChanged(); }
+            get { return _Transactee; }
+            set { _Transactee = value; OnPropertyChanged(); }
         }
 
         private Account _Account;
@@ -31,8 +31,8 @@ namespace CSharpLaPierre
             set { _Account = value; OnPropertyChanged(); }
         }
 
-        private double _Amount;
-        public double Amount
+        private decimal _Amount;
+        public decimal Amount
         {
             get { return _Amount; }
             set { _Amount = value; OnPropertyChanged(); }
@@ -48,13 +48,26 @@ namespace CSharpLaPierre
 
     }
 
-    public class Account
+    public class Account : BaseVM
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string Institution { get; set; }
-        public bool Business { get; set; }
-        public double Balance { get; set; }
-        public virtual IList<Transaction> Transactions { get; set; }
+        private string _Name;
+        public string Name 
+        {
+            get { return _Name; }
+            set { _Name = value; OnPropertyChanged(); }
+        }
+        private string _Institution;
+        public string Institution
+        {
+            get { return _Institution; }
+            set { _Institution = value; OnPropertyChanged(); }
+        }
+        private decimal _Balance;
+        public decimal Balance
+        {
+            get { return _Balance; }
+            set { _Balance = value; OnPropertyChanged(); }
+        }
     }
 }

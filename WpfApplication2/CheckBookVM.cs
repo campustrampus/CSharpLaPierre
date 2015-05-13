@@ -10,6 +10,7 @@ using System.Windows;
 
 namespace CSharpLaPierre
 {
+
     public class CheckBookVM : BaseVM
     {
         public CheckBookVM()
@@ -18,13 +19,13 @@ namespace CSharpLaPierre
 
         CbDb _Db = new CbDb();
 
-        private int _RowsPerPage = 5;
-        private int _CurrentPage = 1;
-        public int CurrentPage
+        public Transaction _NewTransaction = new Transaction { Date = DateTime.Now };
+        public Transaction NewTransaction
         {
-            get { return _CurrentPage; }
-            set { _CurrentPage = value; OnPropertyChanged(); OnPropertyChanged("CurrentTransactions"); }
+            get { return _NewTransaction; }
+            set { _NewTransaction = value; ; OnPropertyChanged(); }
         }
+
 
         private ObservableCollection<Transaction> _Transactions;
         public ObservableCollection<Transaction> Transactions
@@ -32,72 +33,73 @@ namespace CSharpLaPierre
             get { return _Transactions; }
             set { _Transactions = value; OnPropertyChanged(); OnPropertyChanged("Accounts"); }
         }
-
-        public IEnumerable<Account> Accounts
-        {
-            get { return _Db.Accounts.Local; }
+/* Attempting to implement SelectedItem binding
+        private Account _CurrentAccount;
+        public Account CurrentAccount 
+        {   
+            get {return _CurrentAccount;}
+            set { _CurrentAccount = value; OnPropertyChanged(); }
         }
 
         public IEnumerable<Transaction> CurrentTransactions
         {
-            get { return Transactions.Skip((_CurrentPage - 1) * _RowsPerPage).Take(_RowsPerPage); }
+            get { return Transactions.Where(t => t.Account.Name == _CurrentAccount);}
+        }
+*/
+
+        private ObservableCollection<Account> _Accounts;
+        public ObservableCollection<Account> Accounts
+        {
+            get { return _Accounts; }
+            set { _Accounts = value; OnPropertyChanged(); }
         }
 
-        public DelegateCommand MoveNext
+        private DelegateCommand _SaveTransaction;
+        public ICommand SaveTransaction
         {
             get
             {
-                return new DelegateCommand {
-                    ExecuteFunction = _ => CurrentPage++,
-                    CanExecuteFunction = _ => CurrentPage * _RowsPerPage < Transactions.Count
-                };
-            }
-        }
-
-        public DelegateCommand MoveLast
-        {
-            get
-            {
-                return new DelegateCommand
+                if (_SaveTransaction == null)
                 {
-                    ExecuteFunction = _ => CurrentPage--,
-                    CanExecuteFunction = _ => CurrentPage * _RowsPerPage < Transactions.Count
-                };
+                    _SaveTransaction = new DelegateCommand
+                    {
+                        ExecuteFunction = x =>
+                          {
+                              _Db.Transactions.Add(_NewTransaction);
+                              Account updateAccount = (from A in Accounts where A == _NewTransaction.Account select A).Single();
+                              updateAccount.Balance += _NewTransaction.Amount;
+                              _Db.SaveChanges(); NewTransaction = new Transaction { Date = DateTime.Now };
+
+                          },
+                        CanExecuteFunction = x => NewTransaction.Amount != 0 && NewTransaction.Account != null
+                    };
+                    _NewTransaction.PropertyChanged += (s, e) => _SaveTransaction.OnCanExecuteChanged();
+                }
+                return _SaveTransaction;
             }
+            
         }
 
-
-        public DelegateCommand Save
-        {
-       
-            get
-            {
-                return new DelegateCommand 
-                {
-                    ExecuteFunction = _ => {Transactions.Add(new Transaction( ));}
-                };
-            }
-        }
-
-        public DelegateCommand Open_Transaction
+        public DelegateCommand Open_Account
         {
             get
             {
                 
                     return new DelegateCommand
                     {
-                        ExecuteFunction = _ => { NewTransactionWindow NewTranWin = new NewTransactionWindow(); 
-                                                 NewTranWin.ShowDialog(); 
-                                                 var TransVM = NewTranWin.DataContext as TransactionVM; 
-                                                 if(TransVM.isSave ==true)Transactions.Add((Transaction)TransVM.Data);},
-                       CanExecuteFunction = _ => Accounts.Count() > 0
+                        ExecuteFunction = _ => { NewAccountWindow NewAccountWin = new NewAccountWindow(); 
+                                                 NewAccountWin.ShowDialog(); 
+                                                 var accountVM = NewAccountWin.DataContext as AccountVM; 
+                                                 if(accountVM.isSave ==true) Fill();}
                     };
+                
             }
         }
 
         public void Fill()
         {
             Transactions = _Db.Transactions.Local;
+            Accounts = _Db.Accounts.Local;
             _Db.Accounts.ToList();
             _Db.Transactions.ToList();
         }

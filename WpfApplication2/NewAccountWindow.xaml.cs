@@ -14,9 +14,9 @@ using System.Windows.Shapes;
 
 namespace CSharpLaPierre
 {
-    public partial class NewTransactionWindow : Window
+    public partial class NewAccountWindow : Window
     {
-        public NewTransactionWindow()
+        public NewAccountWindow()
         {
             InitializeComponent();
         }
@@ -24,7 +24,7 @@ namespace CSharpLaPierre
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            var VM = new TransactionVM();
+            var VM = new AccountVM();
             DataContext = VM;
         }
 

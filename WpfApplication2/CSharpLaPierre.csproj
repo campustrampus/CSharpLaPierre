@@ -60,14 +60,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Migrations\201505110240432_Initialize.cs" />
-    <Compile Include="Migrations\201505110240432_Initialize.Designer.cs">
-      <DependentUpon>201505110240432_Initialize.cs</DependentUpon>
+    <Compile Include="Migrations\201505130543174_Initial.cs" />
+    <Compile Include="Migrations\201505130543174_Initial.Designer.cs">
+      <DependentUpon>201505130543174_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="TransactionVM.cs" />
-    <Compile Include="NewTransactionWindow.xaml.cs">
-      <DependentUpon>NewTransactionWindow.xaml</DependentUpon>
+    <Compile Include="AccountVM.cs" />
+    <Compile Include="NewAccountWindow.xaml.cs">
+      <DependentUpon>NewAccountWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -84,7 +84,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="NewTransactionWindow.xaml">
+    <Page Include="NewAccountWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -103,8 +103,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201505110240432_Initialize.resx">
-      <DependentUpon>201505110240432_Initialize.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201505130543174_Initial.resx">
+      <DependentUpon>201505130543174_Initial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

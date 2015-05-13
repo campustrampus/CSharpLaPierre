@@ -31,7 +31,5 @@ namespace CSharpLaPierre
             DataContext = VM;
             VM.Fill();
         }
-
-
     }
 }

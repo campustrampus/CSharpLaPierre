@@ -12,20 +12,22 @@ Title="MainWindow" Height="330.314" Width="1000" Loaded="Window_Loaded" Name="ro
             <RowDefinition Height="25"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200*"/>
-            <ColumnDefinition Width="225*"/>
-            <ColumnDefinition Width="200*"/>
+            <ColumnDefinition Width="237*"/>
+            <ColumnDefinition Width="438*"/>
+            <ColumnDefinition Width="317*"/>
         </Grid.ColumnDefinitions>
         <GridSplitter Width="5" VerticalAlignment="Stretch" HorizontalAlignment="Right" Grid.RowSpan="2" />
         <GridSplitter Width="5" VerticalAlignment="Stretch" HorizontalAlignment="Right" Grid.Column="1" Grid.RowSpan="2" />
-        <GridSplitter Height="5" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Grid.ColumnSpan="4" Grid.Row="1" />
-        <DataGrid x:Name="accountDataGrid" AutoGenerateColumns="False" SelectedItem="{Binding CurrentAccount}" EnableRowVirtualization="True" ItemsSource="{Binding Accounts}" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="0,1,5,0" Grid.RowSpan="2">
-            <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Name}" Header="Account Name" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="amountColumn" Binding="{Binding Institution}" Header="Institution" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="balanceColumn" Binding="{Binding Balance}" Header="Balance" Width="SizeToHeader"/>
-            </DataGrid.Columns>
-        </DataGrid>
+        <GridSplitter Height="5" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Grid.ColumnSpan="3" Grid.Row="1" />
+        <ListView x:Name="accountDataGrid" SelectedItem="{Binding CurrentAccount}" ItemsSource="{Binding Accounts}" Margin="5,1,0,0" Grid.RowSpan="2" SelectionChanged="accountDataGrid_SelectionChanged" >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Account Name" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Institution}" Header="Institution"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Balance}" Header="Balance"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
         <Grid DataContext="{Binding NewTransaction}" Grid.Column="2" Margin="0,0,0,5" Grid.RowSpan="2" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
@@ -51,7 +53,7 @@ Title="MainWindow" Height="330.314" Width="1000" Loaded="Window_Loaded" Name="ro
             <Label Content="Tag:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,4,0,1.477" Grid.Row="4" VerticalAlignment="Center"/>
             <TextBox x:Name="tagTextBox" Grid.Column="1" Height="23" Margin="3,5,3,3.477" Grid.Row="4" Text="{Binding Tag, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"/>
         </Grid>
-        <ListView Grid.Column="1" x:Name="TransactionList" ItemsSource="{Binding Transactions}" SelectionMode="Single" Grid.RowSpan="3" Margin="0,1,0,24">
+        <ListView Grid.Column="1" x:Name="TransactionList" ItemsSource="{Binding CurrentTransactions}" SelectedItem="{Binding CurrentTransaction}" Grid.RowSpan="3" Margin="0,1,0,24">
             <ListView.ItemContainerStyle>
                 <Style>
                     <Setter Property="Control.HorizontalContentAlignment" Value="Stretch"/>
@@ -65,7 +67,7 @@ Title="MainWindow" Height="330.314" Width="1000" Loaded="Window_Loaded" Name="ro
                     <GridViewColumn x:Name="dateColumn" Header="Date" Width="80">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Margin="-6,-1" Text="{Binding Date}"/>
+                                <TextBlock Margin="-6,-1" Text="{Binding Path=Date, StringFormat={}{0:MM/dd/yyyy}}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -86,8 +88,9 @@ Title="MainWindow" Height="330.314" Width="1000" Loaded="Window_Loaded" Name="ro
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Grid.Row="2" Command="{Binding Open_Account}" HorizontalAlignment="Right" Width="120" Height="25" VerticalAlignment="Top" Margin="0,0,97,0" Content="Add New Account" />
-        <Button Grid.Row="2" Grid.Column="2" Command="{Binding SaveTransaction}" Margin="0,0,18,0" HorizontalAlignment="Right" Width="40" >Save</Button>
+        <Button Grid.Row="2" Command="{Binding Open_Account}" HorizontalAlignment="Right" Width="120" Height="25" VerticalAlignment="Top" Margin="0,0,64,0" Content="Add New Account" />
+        <Button Grid.Row="2" Grid.Column="2" Command="{Binding SaveTransaction}" Margin="0,0,137,0" HorizontalAlignment="Right" Width="40" >Save</Button>
+        <Button Grid.Row="2" Grid.Column="1" Command="{Binding DeleteTransaction}" Margin="0,0,160,0" HorizontalAlignment="Right" Width="123" >Delete Transaction</Button>
         <Grid x:Name="grid1" Grid.Column="2" Grid.RowSpan="2" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>

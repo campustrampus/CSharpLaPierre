@@ -31,5 +31,10 @@ namespace CSharpLaPierre
             DataContext = VM;
             VM.Fill();
         }
+
+        private void accountDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

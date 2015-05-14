@@ -31,21 +31,29 @@ namespace CSharpLaPierre
         public ObservableCollection<Transaction> Transactions
         {
             get { return _Transactions; }
-            set { _Transactions = value; OnPropertyChanged(); OnPropertyChanged("Accounts"); }
+            set { _Transactions = value; OnPropertyChanged(); OnPropertyChanged("CurrentTransactions"); }
         }
-/* Attempting to implement SelectedItem binding
+
         private Account _CurrentAccount;
         public Account CurrentAccount 
         {   
             get {return _CurrentAccount;}
-            set { _CurrentAccount = value; OnPropertyChanged(); }
+            set { _CurrentAccount = value; OnPropertyChanged(); OnPropertyChanged("CurrentTransactions");}
         }
 
-        public IEnumerable<Transaction> CurrentTransactions
+
+        public ObservableCollection<Transaction> CurrentTransactions 
         {
-            get { return Transactions.Where(t => t.Account.Name == _CurrentAccount);}
+            get { return new ObservableCollection<Transaction>(Transactions.Where(t => t.Account == _CurrentAccount).ToList()); }
+            set { }
         }
-*/
+
+        private Transaction _CurrentTransaction;
+        public Transaction CurrentTransaction
+        {
+            get { return _CurrentTransaction; }
+            set { _CurrentTransaction = value; OnPropertyChanged(); }
+        }
 
         private ObservableCollection<Account> _Accounts;
         public ObservableCollection<Account> Accounts
@@ -68,7 +76,8 @@ namespace CSharpLaPierre
                               _Db.Transactions.Add(_NewTransaction);
                               Account updateAccount = (from A in Accounts where A == _NewTransaction.Account select A).Single();
                               updateAccount.Balance += _NewTransaction.Amount;
-                              _Db.SaveChanges(); NewTransaction = new Transaction { Date = DateTime.Now };
+                              _Db.SaveChanges(); NewTransaction = new Transaction { Date = DateTime.Now }; _CurrentAccount = CurrentAccount;
+
 
                           },
                         CanExecuteFunction = x => NewTransaction.Amount != 0 && NewTransaction.Account != null
@@ -79,6 +88,26 @@ namespace CSharpLaPierre
             }
             
         }
+
+
+        public DelegateCommand DeleteTransaction
+        {
+            get
+            {
+                    return new DelegateCommand
+                    {
+                        ExecuteFunction = _ =>
+                        {
+                            Account updateAccount = (from A in Accounts where A == _CurrentTransaction.Account select A).Single();
+                            updateAccount.Balance -= _CurrentTransaction.Amount;
+                            _Db.Transactions.Remove(_CurrentTransaction);
+                            _Db.SaveChanges(); Fill();
+                        }
+                    };
+
+            }
+        }
+        
 
         public DelegateCommand Open_Account
         {

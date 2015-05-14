@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using System.Windows;
+using System.Windows.Media;
 
 namespace CSharpLaPierre
 {
@@ -19,11 +20,11 @@ namespace CSharpLaPierre
 
         CbDb _Db = new CbDb();
 
-        public Transaction _NewTransaction = new Transaction { Date = DateTime.Now };
+        public Transaction _NewTransaction = new Transaction { Date = DateTime.Now, Transactee=""};
         public Transaction NewTransaction
         {
             get { return _NewTransaction; }
-            set { _NewTransaction = value; ; OnPropertyChanged(); }
+            set { _NewTransaction = value; OnPropertyChanged(); OnPropertyChanged("CheckHighestPayee"); }
         }
 
 
@@ -31,7 +32,7 @@ namespace CSharpLaPierre
         public ObservableCollection<Transaction> Transactions
         {
             get { return _Transactions; }
-            set { _Transactions = value; OnPropertyChanged(); OnPropertyChanged("CurrentTransactions"); }
+            set { _Transactions = value; OnPropertyChanged(); OnPropertyChanged("CurrentTransactions"); OnPropertyChanged("Accounts"); }
         }
 
         private Account _CurrentAccount;
@@ -45,7 +46,6 @@ namespace CSharpLaPierre
         public ObservableCollection<Transaction> CurrentTransactions 
         {
             get { return new ObservableCollection<Transaction>(Transactions.Where(t => t.Account == _CurrentAccount).ToList()); }
-            set { }
         }
 
         private Transaction _CurrentTransaction;
@@ -73,10 +73,10 @@ namespace CSharpLaPierre
                     {
                         ExecuteFunction = x =>
                           {
-                              _Db.Transactions.Add(_NewTransaction);
                               Account updateAccount = (from A in Accounts where A == _NewTransaction.Account select A).Single();
                               updateAccount.Balance += _NewTransaction.Amount;
-                              _Db.SaveChanges(); NewTransaction = new Transaction { Date = DateTime.Now }; _CurrentAccount = CurrentAccount;
+                              _Db.Transactions.Add(_NewTransaction);
+                              _Db.SaveChanges(); Fill(); NewTransaction = new Transaction { Date = DateTime.Now,Transactee="" }; _CurrentAccount = CurrentAccount;
 
 
                           },
@@ -122,6 +122,36 @@ namespace CSharpLaPierre
                                                  if(accountVM.isSave ==true) Fill();}
                     };
                 
+            }
+        }
+        private bool _CheckHighestPayee;
+        public bool CheckHighestPayee
+        {
+            get
+            {
+                return _CheckHighestPayee;
+            }
+            set
+            {
+               _CheckHighestPayee = _NewTransaction.Transactee == Transactions.GroupBy(t => t.Transactee).Select(a => new { a.Key, Sum = a.Sum(t => t.Amount) }).Max().Key; OnPropertyChanged(); OnPropertyChanged("Background");
+            }
+
+        }
+
+        public Brush Background
+        {
+            get
+            {
+                return _CheckHighestPayee ? Brushes.Red : Brushes.White;
+            }
+        }
+
+        public string HighestPayee
+        {
+
+            get 
+            { 
+                return (Transactions.GroupBy(t=> t.Transactee).Select(a => new { a.Key, Sum=a.Sum(t => t.Amount)}).Max().Key);
             }
         }
 
